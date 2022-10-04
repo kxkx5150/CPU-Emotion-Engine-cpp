@@ -1,0 +1,26 @@
+.vs
+*.aps
+*.ipch
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.suo
+*.user
+*.userprops
+*.orig
+*.xccheckout
+*.xcscmblueprint
+xcuserdata
+.DS_Store
+
+# PsfAot output files
+*.blockcache_*
+
+# npm
+node_modules
+/build/
+.cache/
+*.iso
+.VSCodeCounter
+
