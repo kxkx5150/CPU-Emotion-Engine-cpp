@@ -31,6 +31,8 @@ set(QT_SOURCES
 	GSH_OpenGLSDL.h
 	Ps2VmSDL2.cpp
 	Ps2VmSDL2.h
+	InputProviderQtKey.cpp
+	InputProviderQtKey.h
 )		
 
 

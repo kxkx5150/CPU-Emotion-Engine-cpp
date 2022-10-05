@@ -5,7 +5,6 @@
 #include "GSH_OpenGLSDL.h"
 #include "Ps2VmSDL2.h"
 #include "AppConfig.h"
-#include "input/PH_GenericInput.h"
 #include "DiskUtils.h"
 #include "PathUtils.h"
 #include "PS2VM_Preferences.h"
@@ -29,14 +28,29 @@ int main(int argc, char *argv[])
     SDL_Renderer *render = SDL_CreateRenderer(glwind, -1, SDL_RENDERER_ACCELERATED);
     SDL_RenderSetScale(render, 1, 1);
 
+
     CPs2VmSDL2 *g_virtualMachine = new CPs2VmSDL2(glwind, width, height);
     g_virtualMachine->BootDiscImage(argv[1]);
 
     while (Running) {
-        SDL_Event Event;
+        SDL_Event   Event;
+        SDL_Keycode Key;
+
         while (SDL_PollEvent(&Event)) {
-            if (Event.type == SDL_QUIT)
-                Running = 0;
+            switch (Event.type) {
+                case SDL_QUIT:
+                    Running = 0;
+                    break;
+                case SDL_KEYDOWN:
+                    Key = Event.key.keysym.sym;
+                    g_virtualMachine->keyPressEvent(Key);
+                    break;
+
+                case SDL_KEYUP:
+                    Key = Event.key.keysym.sym;
+                    g_virtualMachine->keyReleaseEvent(Key);
+                    break;
+            }
         }
     }
 
